@@ -23,6 +23,10 @@ public class LoginPage {
 		return subMitButton;
 	}
 	
+	public WebElement getToaster() {
+		return toaster;
+	}
+	
 	public LoginPage inputEmail(String email) {
 		emailInput.sendKeys(email);
 		return this;

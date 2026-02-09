@@ -19,7 +19,8 @@ public class LoginTest extends BaseTest{
 		loginPage.inputEmail("qa_testers@qabrains.com").inputPassword("Password123");
 		JavascriptExecutors.scrollBy(driver, 0, 800);
 		WebDriverWaits.waitForElementToBeViible(loginPage.getSubmitButton(), driver, 3).click();
-		Assert.assertEquals("Login Successful", loginPage.getToasterMessage());
+		String msg = WebDriverWaits.waitForElementToBeViible(loginPage.getToaster(), driver, 3).getText();
+		Assert.assertEquals("Login Successful", msg);
 
 	}
 }
