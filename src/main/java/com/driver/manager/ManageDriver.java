@@ -11,7 +11,7 @@ import com.utilities.PropertyLoader;
 public class ManageDriver {
 
 	private static WebDriver driver;
-	private static String browser = PropertyLoader.loadProperty().getProperty("browser");
+	private static String browser = PropertyLoader.getBrowser();
 	private static String baseURL = PropertyLoader.loadProperty().getProperty("baseUrl");
 
 	public static void initiateDriver() {

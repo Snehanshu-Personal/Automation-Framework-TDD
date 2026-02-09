@@ -17,4 +17,14 @@ public class PropertyLoader {
         }
         return prop;
     }
+    
+    public static String getBrowser() {
+        String browserFromCmd = System.getProperty("browser");
+
+        if (browserFromCmd != null && !browserFromCmd.isEmpty()) {
+            return browserFromCmd;
+        }
+        return loadProperty().getProperty("browser");
+    }
+
 }
