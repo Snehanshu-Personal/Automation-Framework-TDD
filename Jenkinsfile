@@ -6,6 +6,11 @@ pipeline {
             choices: ['chrome', 'firefox'],
             description: 'Select browser to run tests'
         )
+        booleanParam(
+        name: 'HEADLESS',
+        defaultValue: false,
+        description: 'Run browser in headless mode'
+    )
     }
 
     tools {
@@ -24,7 +29,7 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                bat 'mvn clean test'
+                bat "mvn clean test -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS}"
             }
         }
     }
