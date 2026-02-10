@@ -6,25 +6,33 @@ import java.util.Properties;
 
 public class PropertyLoader {
 
-    public static Properties loadProperty() {
-        Properties prop = new Properties();
-        try {
-            FileInputStream fis =
-                new FileInputStream("src/test/resources/config.properties");
-            prop.load(fis);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load config.properties", e);
-        }
-        return prop;
-    }
-    
-    public static String getBrowser() {
-        String browserFromCmd = System.getProperty("browser");
+	public static Properties loadProperty() {
+		Properties prop = new Properties();
+		try {
+			FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
+			prop.load(fis);
+		} catch (IOException e) {
+			throw new RuntimeException("Failed to load config.properties", e);
+		}
+		return prop;
+	}
 
-        if (browserFromCmd != null && !browserFromCmd.isEmpty()) {
-            return browserFromCmd;
-        }
-        return loadProperty().getProperty("browser");
-    }
+	public static String getBrowser() {
+		String browserFromCmd = System.getProperty("browser");
+
+		if (browserFromCmd != null && !browserFromCmd.isEmpty()) {
+			return browserFromCmd;
+		}
+		return loadProperty().getProperty("browser");
+	}
+
+	public static boolean isHeadless() {
+		String headlessFromCmd = System.getProperty("headless");
+
+		if (headlessFromCmd != null) {
+			return Boolean.parseBoolean(headlessFromCmd);
+		}
+		return false; // default for local runs
+	}
 
 }
